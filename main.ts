@@ -7,7 +7,7 @@ import { typeDefs } from "./gql/schema.ts";
 const env = await load(); // Load env variables
 
 // Obtain mongo url and port from env or Deno.env
-const MONGO_URL = env.MONGO_URL || Deno.env.get("MONGO_URL") || "";
+const MONGO_URL = env.MONGO_URL || Deno.env.get("MONGO_URL") || "mongodb+srv://rmontenegrop:Lllubo6BT2sVncJg@clusteruni.pagju8q.mongodb.net/DataBaseOrdinariaGraphQL?retryWrites=true&w=majority";
 const PORT = env.PORT || Deno.env.get("PORT") || 3061;
 
 // Verify if exist mongo url and port
