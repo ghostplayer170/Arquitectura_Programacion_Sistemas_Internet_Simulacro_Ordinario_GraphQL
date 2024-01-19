@@ -1,9 +1,8 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import mongoose from "npm:mongoose@7.6.3";
+import mongoose from "mongoose";
 import { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts";
 import { typeDefs } from "./gql/schema.ts";
-import { resolvers } from "./resolvers/index.ts";
 
 const env = await load(); // Load env variables
 
@@ -24,6 +23,10 @@ try {
 } catch (e) {
   console.error(e);
 }
+
+const resolvers = {
+  
+};
 
 // Create Apollo Server
 const server = new ApolloServer({

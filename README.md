@@ -1,1 +1,2 @@
-﻿# Arquitectura_Programacion_Sistemas_Internet_Ordinario_GraphQL
+﻿# Arquitectura_Programacion_Sistemas_Internet
+## Ordinario_GraphQL
