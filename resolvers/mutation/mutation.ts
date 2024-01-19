@@ -14,9 +14,6 @@ export const Mutation = {
       if(!phoneInfo){
         throw new GraphQLError(`Error: Getting Phone Info`);
       }
-      if(!phoneInfo.is_valid){
-        throw new GraphQLError(`Error: Not valid phone number`);
-      }
       const contact = new ContactModel({
         name: args.name,
         phone: args.phone,
@@ -55,14 +52,14 @@ export const Mutation = {
         const phoneInfo = await getInfoFromValidatePhone(args.phone);
         if(!phoneInfo){
           throw new GraphQLError(`Error: Getting Phone Info`);
-        }
+        }/*
         if(!phoneInfo.is_valid){
           throw new GraphQLError(`Error: Not valid phone number`);
-        }
+        }*/
       }
       const contact = await ContactModel.findOneAndUpdate(
         {_id: args.id},
-        {$set: {name: args.name, country: args.phone}},
+        {$set: {name: args.name, phone: args.phone}},
         {new: true}
         );
       if(!contact){
