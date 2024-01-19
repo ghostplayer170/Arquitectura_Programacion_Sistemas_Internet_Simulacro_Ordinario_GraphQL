@@ -7,11 +7,12 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
     try {
         const Capital = await getInfoFromCountry(model.country);
         if(!Capital){
-          throw new GraphQLError(`Error: Getting Local Hour`);
+          throw new GraphQLError(`Error: Getting Capital`);
         }
+        console.log(Capital[0].capital)
         const HourCapital = await getInfoFromWorldTime(Capital[0].capital);
         if(!HourCapital){
-          throw new GraphQLError(`Error: Getting Local Hour`);
+          throw new GraphQLError(`Error: Getting Capital Hour`);
         }
         const contact: Contact = {
             id: model._id.toString(),
