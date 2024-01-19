@@ -1,14 +1,19 @@
 import mongoose from "npm:mongoose@8.0.1";
+import {Contact} from "../../types.ts"
 
-export type ExampleModelType = 
-    & mongoose.Document;
+export type ContactModelType = 
+    & mongoose.Document
+    & Omit<Contact, "id">;
 
 const Schema = mongoose.Schema;
 
-const ExampleSchema = new Schema(
+const ContactSchema = new Schema(
     {
-        //code
+        name: {type: String, required: true},
+        phone: {type: String, required: true},
+        country: {type: String, required: true},
+        localHour: {type: String, required: true},
     }
 );
 
-export const ExampleModel = mongoose.model<ExampleModelType>("Example", ExampleSchema);
+export const ContactModel = mongoose.model<ContactModelType>("Contact", ContactSchema);
