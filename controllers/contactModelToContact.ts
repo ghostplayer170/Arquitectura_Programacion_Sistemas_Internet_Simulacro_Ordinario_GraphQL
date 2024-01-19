@@ -10,8 +10,7 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
           throw new GraphQLError(`Error: Getting Capital`);
         }
         const cap: string = Capital[0].capital;
-        console.log(cap)
-
+        
         const HourCapital = await getInfoFromWorldTime(cap);
         if(!HourCapital){
           throw new GraphQLError(`Error: Getting Capital Hour`);

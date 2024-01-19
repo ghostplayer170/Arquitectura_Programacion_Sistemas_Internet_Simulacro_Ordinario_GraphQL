@@ -52,10 +52,7 @@ export const Mutation = {
         const phoneInfo = await getInfoFromValidatePhone(args.phone);
         if(!phoneInfo){
           throw new GraphQLError(`Error: Getting Phone Info`);
-        }/*
-        if(!phoneInfo.is_valid){
-          throw new GraphQLError(`Error: Not valid phone number`);
-        }*/
+        }
       }
       console.log(args.phone)
       const contact = await ContactModel.findOneAndUpdate(
