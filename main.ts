@@ -24,9 +24,7 @@ try {
   console.error(e);
 }
 
-const resolvers = {
-  
-};
+//const resolvers = {};
 
 // Create Apollo Server
 const server = new ApolloServer({

@@ -5,10 +5,10 @@ export const typeDefs = `#graphql
   }
 
   type Query { # Endpoints
-    #getExamples: [Example!]!
+    getExamples: [Example!]!
   }
 
   type Mutation { # Endpoints
-    #addExample(name: String!): Example!
+    addExample(name: String!): Example!
   }
 `;
