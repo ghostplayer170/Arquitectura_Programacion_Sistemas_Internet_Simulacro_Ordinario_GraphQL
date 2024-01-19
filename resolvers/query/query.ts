@@ -29,7 +29,7 @@ export const Query = {
         throw new GraphQLError(`Not found contacts`);
       }
       const contactsReturn = Promise.all(
-        contacts.map((elem)=> contactModelToContact(elem))
+        contacts.map(async (elem)=> await contactModelToContact(elem))
       )
       return contactsReturn;
     } catch (error) {

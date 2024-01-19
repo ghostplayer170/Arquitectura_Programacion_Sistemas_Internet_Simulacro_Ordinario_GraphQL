@@ -26,8 +26,6 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
             localHour: hour,
         }
 
-        console.log(contact)
-
         return contact;
 
     } catch (error) {
