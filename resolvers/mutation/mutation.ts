@@ -66,6 +66,7 @@ export const Mutation = {
       if(!contact){
         throw new GraphQLError(`Not found contact with ${args.id}`);
       }
+      await contact.save();
 
       const contactReturn = await contactModelToContact(contact);
 
