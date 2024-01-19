@@ -9,12 +9,12 @@ export const typeDefs = `#graphql
   }
 
   type Query { # Endpoints
-    getContact: Contact!
+    getContact(id: ID): Contact!
     getContacts: [Contact!]!
   }
 
   type Mutation { # Endpoints
-    addContact(name: String!): Contact!
+    addContact(name: String!, phone: String!): Contact!
     deleteContact(id: ID!): Boolean!
     updateContact(id: ID!, name: String, country:String): Contact!
   }

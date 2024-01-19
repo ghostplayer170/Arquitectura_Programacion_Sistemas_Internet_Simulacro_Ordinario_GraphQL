@@ -12,7 +12,6 @@ const ContactSchema = new Schema(
         name: {type: String, required: true},
         phone: {type: String, required: true},
         country: {type: String, required: true},
-        localHour: {type: String, required: true},
     }
 );
 
