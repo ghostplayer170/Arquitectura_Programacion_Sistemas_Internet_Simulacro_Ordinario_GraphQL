@@ -17,8 +17,6 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
         }
         const hour: string = HourCapital.datetime;
 
-        console.log("apis correct")
-
         const contact: Contact = {
             id: model._id.toString(),
             name: model.name,
@@ -27,7 +25,7 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
             localHour: hour,
         }
 
-        console.log("contact correct")
+        console.log(contact)
 
         return contact;
 
