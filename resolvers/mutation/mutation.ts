@@ -57,8 +57,8 @@ export const Mutation = {
           throw new GraphQLError(`Error: Not valid phone number`);
         }
       }
-      const contact = await ContactModel.findByIdAndUpdate(
-        args.id,
+      const contact = await ContactModel.findOneAndUpdate(
+        {_id: args.id},
         {$set:{name: args.name, country: args.phone}},
         {new: true}
         );

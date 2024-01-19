@@ -21,5 +21,6 @@ ContactSchema.path('name').validate(nameFormat, "Name must be only letters and s
 ContactSchema.path('phone').validate(phoneFormat, "Phone must be in this format +12065550100");
 ContactSchema.path('country').validate(countryFormat, "Country must be only letters and space");
 ContactSchema.pre("save", ContactPreSave);
+ContactSchema.pre("findOneAndUpdate", ContactPreSave);
 
 export const ContactModel = mongoose.model<ContactModelType>("Contact", ContactSchema);
