@@ -4,11 +4,5 @@ export const typeDefs = `#graphql
     id: ID!
   }
 
-  type Query { # Endpoints
-    #getExamples: [Example!]!
-  }
 
-  type Mutation { # Endpoints
-    #addExample(name: String!): Example!
-  }
 `;
