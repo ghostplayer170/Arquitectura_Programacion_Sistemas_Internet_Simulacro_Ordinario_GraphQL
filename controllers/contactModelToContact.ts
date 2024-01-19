@@ -9,20 +9,28 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
         if(!Capital){
           throw new GraphQLError(`Error: Getting Capital`);
         }
-        console.log(Capital[0].capital)
-        const HourCapital = await getInfoFromWorldTime(Capital[0].capital);
+        const cap: string = Capital[0].capital;
+
+        const HourCapital = await getInfoFromWorldTime(cap);
         if(!HourCapital){
           throw new GraphQLError(`Error: Getting Capital Hour`);
         }
-        console.log(HourCapital.datetime);
+        const hour: string = HourCapital.datetime;
+
+        console.log("apis correct")
+
         const contact: Contact = {
             id: model._id.toString(),
             name: model.name,
             phone: model.phone,
             country: model.country,
-            localHour: HourCapital.datetime
+            localHour: hour,
         }
+
+        console.log("contact correct")
+
         return contact;
+
     } catch (error) {
         throw new GraphQLError(`Error: ${error}`);
     }
