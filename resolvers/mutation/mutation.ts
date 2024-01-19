@@ -10,15 +10,17 @@ export const Mutation = {
     args: { name:string, phone:string },
   ): Promise<Contact> => {
     try {
-      const phoneCountry = await getInfoFromValidatePhone(args.phone);
-      if(!phoneCountry){
-        throw new GraphQLError(`Error: Getting Country`);
+      const phoneInfo = await getInfoFromValidatePhone(args.phone);
+      if(!phoneInfo){
+        throw new GraphQLError(`Error: Getting Phone Info`);
       }
-
+      if(!phoneInfo.is_valid){
+        throw new GraphQLError(`Error: Not valid phone number`);
+      }
       const contact = new ContactModel({
         name: args.name,
         phone: args.phone,
-        country: phoneCountry.country,
+        country: phoneInfo.country,
       })
       const created = await contact.save();
 
@@ -46,12 +48,18 @@ export const Mutation = {
   },
   updateContact: async (
     _: unknown,
-    args: { id: string, name:string, country:string },
+    args: { id: string, name:string, phone:string },
   ): Promise<Contact> => {
     try {
+      if(args.phone){
+        const phoneInfo = await getInfoFromValidatePhone(args.phone);
+        if(!phoneInfo.is_valid){
+          throw new GraphQLError(`Error: Not valid phone number`);
+        }
+      }
       const contact = await ContactModel.findByIdAndUpdate(
         args.id,
-        {$set:{name: args.name, country: args.country}},
+        {$set:{name: args.name, country: args.phone}},
         {new: true}
         );
       if(!contact){

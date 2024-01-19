@@ -16,7 +16,7 @@ export const typeDefs = `#graphql
   type Mutation { # Endpoints
     addContact(name: String!, phone: String!): Contact!
     deleteContact(id: ID!): Boolean!
-    updateContact(id: ID!, name: String, country:String): Contact!
+    updateContact(id: ID!, name: String, phone:String): Contact!
   }
 `;
 
