@@ -14,6 +14,7 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
         if(!HourCapital){
           throw new GraphQLError(`Error: Getting Capital Hour`);
         }
+        console.log(HourCapital.datetime);
         const contact: Contact = {
             id: model._id.toString(),
             name: model.name,
