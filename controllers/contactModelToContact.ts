@@ -1,12 +1,16 @@
 import { GraphQLError } from "graphql";
 import {ContactModelType} from "../db/schemas/Contact.ts"
 import {Contact} from "../types.ts"
-import { getInfoFromWorldTime } from "../resolvers/api/getContactInfoFromApi.ts"
+import { getInfoFromWorldTime, getInfoFromCountry } from "../resolvers/api/getContactInfoFromApi.ts"
 
 export const contactModelToContact = async (model: ContactModelType):Promise<Contact> => {
     try {
-        const countryHour = await getInfoFromWorldTime(model.country);
-        if(!countryHour){
+        const Capital = await getInfoFromCountry(model.country);
+        if(!Capital){
+          throw new GraphQLError(`Error: Getting Local Hour`);
+        }
+        const HourCapital = await getInfoFromWorldTime(Capital[0].capital);
+        if(!HourCapital){
           throw new GraphQLError(`Error: Getting Local Hour`);
         }
         const contact: Contact = {
@@ -14,7 +18,7 @@ export const contactModelToContact = async (model: ContactModelType):Promise<Con
             name: model.name,
             phone: model.phone,
             country: model.country,
-            localHour: countryHour.datetime
+            localHour: HourCapital.datetime
         }
         return contact;
     } catch (error) {
